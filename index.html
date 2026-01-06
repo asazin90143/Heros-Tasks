@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hero's Tasks - RPG To-Do</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body>
+
+    <div class="app-container">
+        <header class="stats-header">
+            <div class="level-badge">
+                <span class="level-label">LVL</span>
+                <span id="level-display">1</span>
+            </div>
+            <div class="xp-container">
+                <div class="xp-text">
+                    <span id="xp-current">0</span> / <span id="xp-next">100</span> XP
+                </div>
+                <div class="xp-bar-bg">
+                    <div id="xp-bar-fill" class="xp-bar-fill"></div>
+                </div>
+            </div>
+        </header>
+
+        <div class="input-group">
+            <input type="text" id="task-input" placeholder="What is your quest today?">
+            <select id="priority-input">
+                <option value="low">Low (10 XP)</option>
+                <option value="medium" selected>Medium (20 XP)</option>
+                <option value="high">High (50 XP)</option>
+            </select>
+            <button id="add-btn"><i class="fas fa-plus"></i></button>
+        </div>
+
+        <div class="tasks-container">
+            <h3>Active Quests</h3>
+            <ul id="task-list">
+            </ul>
+            <div id="empty-state" class="empty-state">
+                <p>No active quests. Add one to begin your adventure!</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="main.js"></script>
+</body>
+
+</html>
