@@ -10,6 +10,7 @@ let stats = JSON.parse(localStorage.getItem('rpg-todo-stats')) || {
 function addTask() {
     const input = document.getElementById('task-input');
     const prioritySelect = document.getElementById('priority-input');
+    const dateInput = document.getElementById('due-date-input');
     const text = input.value.trim();
 
     if (!text) {
@@ -21,11 +22,13 @@ function addTask() {
         id: Date.now().toString(),
         text: text,
         priority: prioritySelect.value, // 'low', 'medium', or 'high'
+        dueDate: dateInput.value,
         completed: false
     };
 
     tasks.push(newTask);
     input.value = ''; // Reset input
+    dateInput.value = ''; // Reset date
     saveAndRender();
 }
 
@@ -100,13 +103,12 @@ function render() {
             li.className = `task-item priority-${task.priority} ${task.completed ? 'completed' : ''}`;
 
             li.innerHTML = `
+                <button class="btn-complete" onclick="completeTask('${task.id}')"><i class="fas fa-check"></i></button>
                 <div class="task-content">
                     <span class="task-text">${task.text}</span>
+                    ${task.dueDate ? `<small class="due-date-text"><i class="far fa-clock"></i> Due: ${new Date(task.dueDate).toLocaleString()}</small>` : ''}
                 </div>
-                <div class="actions">
-                    <button class="btn-complete" onclick="completeTask('${task.id}')"><i class="fas fa-check"></i></button>
-                    <button class="btn-delete" onclick="deleteTask('${task.id}')"><i class="fas fa-trash"></i></button>
-                </div>
+                <button class="btn-delete" onclick="deleteTask('${task.id}')"><i class="fas fa-trash"></i></button>
             `;
             taskList.appendChild(li);
         });
